@@ -106,7 +106,7 @@ with open(f"./articles/index.html", encoding='UTF-8', mode='w') as f:
 		dl = d.read().split('\n')
 		title = dl[0]
 		date = dl[1]
-		articleList.insert(0, f'<div class="box"><a href="http://ksk3110.github.io/article/{i}.html">{title}</a><p>{date}</p></div>')
+		articleList.insert(0, f'<div class="box"><a href="https://ksk3110.github.io/article/{i}.html">{title}</a><p>{date}</p></div>')
 		d.close()
 
 	f.write(articlesHtml.replace('[LIST]' , '\n'.join(articleList)))
