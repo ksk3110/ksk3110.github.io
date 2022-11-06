@@ -19,4 +19,4 @@ LINK_BTNS[0].addEventListener('click', function() {window.location.href = 'https
 LINK_BTNS[1].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io/articles/'});
 
 // アイコン
-document.head.innerHTML += '<link rel="icon" type="image/png" href="https://ksk3110.github.io/logo.png"';
+document.head.innerHTML += '<link rel="icon" type="image/png" href="https://ksk3110.github.io/icons/logo.png">';
