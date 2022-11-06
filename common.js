@@ -16,7 +16,7 @@ resizeWindow();
 const LINK_BTNS = document.querySelectorAll('div.header button');
 
 LINK_BTNS[0].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io/'});
-LINK_BTNS[1].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io//articles/'});
+LINK_BTNS[1].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io/articles/'});
 
 // アイコン
-document.head.innerHTML += '<link rel="icon" type="image/png" href="/favicon.png"';
+document.head.innerHTML += '<link rel="icon" type="image/png" href="https://ksk3110.github.io/logo.png"';
