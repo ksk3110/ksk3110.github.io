@@ -17,4 +17,6 @@ const LINK_BTNS = document.querySelectorAll('div.header button');
 
 LINK_BTNS[0].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io/'});
 LINK_BTNS[1].addEventListener('click', function() {window.location.href = 'https://ksk3110.github.io//articles/'});
-// LINK_BTNS[2].addEventListener('click', function() {window.location.href = 'http://127.0.0.1:5500/tags/'});
+
+// アイコン
+document.head.innerHTML += '<link rel="icon" type="image/png" href="/favicon.png"';
