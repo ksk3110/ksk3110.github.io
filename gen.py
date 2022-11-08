@@ -44,11 +44,21 @@ def generate(data: str, id: int):
 	del data[0:2]
 
 	compiled = []
-	for l in data:
-		if re.match('^# ', l):    compiled.append(f"<h1>{re.sub('^# ', '', l)}</h1>")
-		elif re.match('^## ', l): compiled.append(f"<h2>{re.sub('^## ', '', l)}</h2>")
+	for line in data:
+		if re.fullmatch('# .+', line):    compiled.append(f"<h1>{re.sub('^# ', '', line)}</h1>")
+		elif re.fullmatch('## .+', line): compiled.append(f"<h2>{re.sub('^## ', '', line)}</h2>")
 		else:
-			compiled.append(f"<p>{l}</p>")
+			if re.search(r'\[https://.+?\|.+?\]', line):
+				link = re.search(r'\[https://.+?\|.+?\]', line).group()
+				line = re.sub(r'\[https://.+?\|.+?\]', '=LINK=', line)
+
+				link = re.sub(r'^\[', '<a href="', link)
+				link = re.sub(r'\|', '">', link, 1)
+				link = re.sub(r'\]$', '</a>', link)
+
+				line = line.replace('=LINK=', link)
+
+			compiled.append(f"<p>{line}</p>")
 
 	html = frame
 	html = html.replace('[CONTENT]', '\n'.join(compiled))
