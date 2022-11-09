@@ -44,19 +44,30 @@ def generate(data: str, id: int):
 	del data[0:2]
 
 	compiled = []
-	for line in data:
+	for line in data: # Pharser
 		if re.fullmatch('# .+', line):    compiled.append(f"<h1>{re.sub('^# ', '', line)}</h1>")
 		elif re.fullmatch('## .+', line): compiled.append(f"<h2>{re.sub('^## ', '', line)}</h2>")
 		else:
-			if re.search(r'\[https://.+?\|.+?\]', line):
-				link = re.search(r'\[https://.+?\|.+?\]', line).group()
-				line = re.sub(r'\[https://.+?\|.+?\]', '=LINK=', line)
+			if re.findall(r'\[https?://.+?\|.+?\]', line): # <a></a>
+				for links in re.findall(r'\[https?://.+?\|.+?\]', line):
+					links = re.search(r'\[https?://.+?\|.+?\]', line).group()
+					line = re.sub(r'\[https?://.+?\|.+?\]', '=LINK=', line, 1)
 
-				link = re.sub(r'^\[', '<a href="', link)
-				link = re.sub(r'\|', '">', link, 1)
-				link = re.sub(r'\]$', '</a>', link)
+					links = re.sub(r'^\[', '<a href="', links,1)
+					links = re.sub(r'\|', '">', links, 1)
+					links = re.sub(r'\]$', '</a>', links,1)
 
-				line = line.replace('=LINK=', link)
+					line = line.replace('=LINK=', links)
+
+			if re.findall(r'\*\*.+?\*\*', line): # <strong><strong>
+				for links in re.findall(r'\*\*.+?\*\*', line):
+					links = re.search(r'\*\*.+?\*\*', line).group()
+					line = re.sub(r'\*\*.+?\*\*', '=STRONG=', line, 1)
+
+					links = re.sub(r'^\*\*', '<strong>', links,1)
+					links = re.sub(r'\*\*$', '</strong>', links,1)
+
+					line = line.replace('=STRONG=', links)
 
 			compiled.append(f"<p>{line}</p>")
 
